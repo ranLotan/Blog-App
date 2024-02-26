@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/">Our Blogs</a>
+
+        <!-- bar Menu -->
+        <ng-container *ngIf="accountService.currentUser$ | async">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/posts" routerLinkActive="active">Resent Posts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/myblog" routerLinkActive="active">My Blog</a>
+            </li>
+          </ul>
+        </ng-container>
+        
+        <ng-container *ngIf="(accountService.currentUser$ | async) as User; else loggedOut">
+          <button type="button" class="btn btn-primary">Welcome {{User.userName | titlecase}}</button>          
+          <button type="button" class="btn btn-primary" onclick="logOut()">Log Out</button>          
+        </ng-container>
+        
+        <ng-template #loggedOut>
+          <!-- log In  -->
+          <form #loginForm="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off"> 
+            <input name="username" [(ngModel)]="model.username" class="form-control me-2" type="text" placeholder="User Name" aria-label="User Name">
+            <input name="password" [(ngModel)]="model.password" class="form-control me-2" type="password" placeholder="Password" aria-label="Password">
+            <button class="btn btn-success" type="submit">Login</button> 
+          </form>
+
+        </ng-template>
+        
+<!-- 
+         <!-- Menu DropDown   
+        <div *ngIf="(accountService.currentUser$ | async) as User" class="btn-group" dropdown>
+          <button id="button-split" type="button" dropdownToggle class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                  aria-controls="dropdown-split">
+            <span class="sr-only visually-hidden">Split button!</span>
+          </button>
+          <ul id="dropdown-split" *dropdownMenu class="dropdown-menu"
+              role="menu" aria-labelledby="button-split">
+            <li role="menuitem"><a class="dropdown-item" href="#">Edit Profile</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#" (click)="openAddReportModal()">Add Report</a></li>
+            <li class="divider dropdown-divider"></li>
+            <li role="menuitem" ><a class="dropdown-item" href="#" ">Log Out</a></li>
+          </ul>
+        </div> -->
+    </div>
+  </nav>
