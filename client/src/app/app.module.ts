@@ -8,11 +8,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavBarComponent } from './_components/nav-bar/nav-bar.component';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { RegisterComponent } from './_components/register/register.component';
+import { BlogsComponent } from './_components/blogs/blogs.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent
+    NavBarComponent,
+    RegisterComponent,
+    BlogsComponent
   ],
   imports: [
     BrowserModule,

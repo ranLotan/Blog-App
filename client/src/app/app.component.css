@@ -1,0 +1,22 @@
+.content {
+grid-area: content;
+position: relative;
+}
+
+.header {
+grid-area: header;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-rows: 56px 500px;
+    grid-template-areas:
+    "header  header  header"
+    "content content content";
+    background-color: #fff;
+    color: #444;
+}
+
+  
+
+  
