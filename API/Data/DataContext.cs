@@ -10,5 +10,11 @@ namespace API.Data
         }
 
         public DbSet<AppUser> Users { get; set; }
+
+        public DbSet<BlogPost> Posts { get; set; }
+
+        //public DbSet<PostComment> comments { get; set; }
+
+
     }
 }
