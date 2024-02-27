@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
+using System;
 using System.Xml.Linq;
 
 namespace API.Controllers
@@ -36,7 +37,10 @@ namespace API.Controllers
                 Id = p.Id,
                 Title = p.Title,
                 Content = p.Content,
-                AuthorId = p.AuthorId
+                AuthorId = p.AuthorId,
+                AuthorName = p.Author.UserName,
+                DateCreated = p.CreationDate.ToString("yyyy-MM-dd HH:mm:ss"),
+
             }).ToList();
 
             return Ok(postDtos);

@@ -8,5 +8,7 @@ namespace API.DTOs
         public string Title { get; set; }
         public string Content { get; set; }
         public int AuthorId { get; set; }
+        public string AuthorName { get; set; }
+        public string DateCreated { get; set ; }
     }
 }

@@ -6,10 +6,13 @@
         <ng-container >
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
-              <a class="nav-link" routerLink="/blogs" routerLinkActive="active">Resent Posts</a>
+              <a class="nav-link" routerLink="/posts-list" routerLinkActive="active">Resent Posts</a>
             </li>
             <li *ngIf="accountService.currentUser$ | async" class="nav-item">
-              <a class="nav-link" routerLink="/myblog" routerLinkActive="active">My Blog</a>
+              <a class="nav-link" routerLink="/my-blog" routerLinkActive="active">My Blog</a>
+            </li>
+            <li *ngIf="accountService.currentUser$ | async" class="nav-item">
+              <a class="nav-link" routerLink="/add-post" routerLinkActive="active">Add Post</a>
             </li>
           </ul>
         </ng-container>

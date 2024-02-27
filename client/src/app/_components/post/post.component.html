@@ -1,0 +1,32 @@
+<ng-container *ngIf="accountService.currentUser$ | async">
+    <Button (click)="editPost()">Edit Post</Button>
+</ng-container>
+
+<div class="col-md-8">
+    <button class="pb-4 mb-4 fst-italic border-bottom">
+     <a href="#bottom"></a>view comments
+    </button>
+
+    <article class="blog-post">
+      <h2 class="display-5 link-body-emphasis mb-1">{{post?.title}}</h2>
+      <p class="blog-post-meta">{{post?.dateCreated}} by <a href="#">{{post?.authorName}}</a></p>
+
+        <p>{{post?.content}}</p>
+      <hr>
+    </article>
+
+    <article class="blog-post">
+        <h5 class="display-5 link-body-emphasis mb-1">comments</h5>
+        <p class="blog-post-meta">{{post?.dateCreated}} by <a href="#">{{post?.authorName}}</a></p>
+  
+          <p>{{post?.content}}</p>
+        <hr>
+      </article>
+
+
+    <!-- <nav id="bottom" class="blog-pagination" aria-label="Pagination">
+      <a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
+      <a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Newer</a>
+    </nav> -->
+
+  </div>
