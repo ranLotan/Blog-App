@@ -15,13 +15,7 @@
       <hr>
     </article>
 
-    <article class="blog-post">
-        <h5 class="display-5 link-body-emphasis mb-1">comments</h5>
-        <p class="blog-post-meta">{{post?.dateCreated}} by <a href="#">{{post?.authorName}}</a></p>
-  
-          <p>{{post?.content}}</p>
-        <hr>
-      </article>
+    <app-comments [currentPostId]="post?.id ?? '0'"></app-comments>
 
 
     <!-- <nav id="bottom" class="blog-pagination" aria-label="Pagination">

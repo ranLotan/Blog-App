@@ -1,0 +1,18 @@
+.comment {
+    display: flex;
+    margin-bottom: 28px;
+  }
+
+.comment-content {
+    display: flex;
+  }
+  
+  .comment-author {
+    margin-right: 8px;
+    font-size: 20px;
+    color: rgb(59, 130, 246);
+  }
+  
+  .comment-text {
+    font-size: 18px;
+  }

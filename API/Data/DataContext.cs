@@ -13,7 +13,7 @@ namespace API.Data
 
         public DbSet<BlogPost> Posts { get; set; }
 
-        //public DbSet<PostComment> comments { get; set; }
+        public DbSet<PostComment> comments { get; set; }
 
 
     }

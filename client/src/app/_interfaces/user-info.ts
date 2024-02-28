@@ -13,3 +13,12 @@ export interface IPost{
     authorName: string,
     dateCreated: string
 }
+
+export interface IComment {
+    id: string;
+    body: string;
+    username: string;
+    userId: string;
+    parentId: null | string;
+    createdAt: string;
+  }
