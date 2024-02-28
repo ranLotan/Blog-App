@@ -15,10 +15,9 @@ export interface IPost{
 }
 
 export interface IComment {
-    id: string;
-    body: string;
-    username: string;
-    userId: string;
-    parentId: null | string;
-    createdAt: string;
+    id?: string;
+    content: string;
+    author: string;
+    postId: string;
+    dateCreated?: string;
   }

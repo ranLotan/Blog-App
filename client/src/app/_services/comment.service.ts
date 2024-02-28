@@ -13,16 +13,17 @@ export class CommentService {
   
   constructor(private httpClient: HttpClient, private accountService: AccountService) {}
   
-  public getComments(): Observable<IComment[]> {
-    return this.httpClient.get<IComment[]>(
-      'http://localhost:3000/comments'
-      );
+  public getPostComments(postId: string): Observable<IComment[]> {
+    return this.httpClient.get<IComment[]>(`${this.url}comment/sortedbydate?postid=${postId}`);
     }
     
-  public createComment(text: string, currentPostId: string): Observable<IComment> {
-    const userName = this.accountService.currentUserSoure.getValue()?.userName;
-
-    return this.httpClient.post<IComment>(`${this.url}comment`, {text, currentPostId, userName} );
+  public createComment(comment: IComment): Observable<IComment> {
+    
+    return this.httpClient.post<IComment>(`${this.url}comment`, comment );
+    
+  }
+  public getUserName(){
+    return this.accountService.currentUserSoure.getValue()?.userName;
 
   }
 }

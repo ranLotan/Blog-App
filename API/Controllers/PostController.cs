@@ -98,7 +98,7 @@ namespace API.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (DbUpdateException)
             {
                 if (!PostExists(postDto.Id))
                 {
@@ -106,7 +106,7 @@ namespace API.Controllers
                 }
                 else
                 {
-                    throw;
+                    return StatusCode(500, "Failed to create comment due to database error.");
                 }
             }
             return Ok();

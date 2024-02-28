@@ -3,10 +3,6 @@
     <div class="comment-form-title">Write comment</div>
     <app-comment-form (handleSubmit)="addComment({text: $event})"></app-comment-form>
     <div class="comments-container">
-        <app-comment *ngFor="let comment of comments" [comment]="comment">
-        </app-comment>
-      <div *ngFor="let comment of comments">
-        {{comment.body}}
-      </div>
+        <app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
     </div>
   </div>

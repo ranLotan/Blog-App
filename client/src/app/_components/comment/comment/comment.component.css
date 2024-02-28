@@ -5,6 +5,8 @@
 
 .comment-content {
     display: flex;
+    flex-direction: column;
+    margin-left: 20px;
   }
   
   .comment-author {
