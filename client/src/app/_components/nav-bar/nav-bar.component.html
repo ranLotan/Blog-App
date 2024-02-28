@@ -19,7 +19,7 @@
         
         <ng-container *ngIf="(accountService.currentUser$ | async) as User; else loggedOut">
           <button type="button" class="btn btn-primary">Welcome {{User.userName | titlecase}}</button>          
-          <button type="button" class="btn btn-primary" onclick="logOut()">Log Out</button>          
+          <button type="button" class="btn btn-primary" (click)="logOut()">Log Out</button>          
         </ng-container>
         
         <ng-template #loggedOut>

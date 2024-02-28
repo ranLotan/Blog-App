@@ -55,18 +55,19 @@ namespace API.Controllers
             {
                 return BadRequest();
             }
-
-            if (!UserExists(postDto.AuthorId))
+            var user = await GetUserById(postDto.AuthorId);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            BlogPost newPost = new BlogPost(postDto);
-
+            BlogPost newPost = new BlogPost(postDto, user);
+            
             _context.Posts.Add(newPost);
+            //todo: add try catch
             await _context.SaveChangesAsync();
 
-            return Ok(newPost);
+            return Ok(new PostDto(newPost));
         }
 
 
@@ -135,6 +136,11 @@ namespace API.Controllers
         private bool UserExists(int id)
         {
             return _context.Users.Any(e => e.Id == id);
+        }
+
+        private async Task<AppUser> GetUserById(int id)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
         }
     }
 }

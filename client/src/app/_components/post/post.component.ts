@@ -30,6 +30,7 @@ export class PostComponent implements OnInit {
   }
 
   public editPost(){
-    this.router.navigate(['/post/edit']);
+    this.router.navigate(['/edit-post/', this.post?.id]);
+
   }
 }

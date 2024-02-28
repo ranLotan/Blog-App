@@ -25,6 +25,6 @@ export class PostsListComponent implements OnInit{
 
   public openPost(post: IPost){
     this.postService.setCurrentPost(post);
-    this.router.navigate(['/post', post.id])
+    this.router.navigate(['/post', post.id]);
   }
 }

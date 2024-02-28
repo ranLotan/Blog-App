@@ -18,11 +18,12 @@ namespace API.Entities
 
         //public ICollection<PostComment> Comments { get; set; }
         public BlogPost() { }
-        public BlogPost(PostDto newpost)
+        public BlogPost(PostDto newpost, AppUser user)
         {
             Title = newpost.Title;
             Content = newpost.Content;
-            AuthorId = newpost.Id;
+            AuthorId = newpost.AuthorId;
+            Author = user;
         }
     }
 }

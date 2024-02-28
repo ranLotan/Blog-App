@@ -59,7 +59,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
   }
 
   public logOut(): void{
-    // this.accountService.logOut();
+    this.accountService.logOut();
     // this.router.navigateByUrl('/');
   }
 }

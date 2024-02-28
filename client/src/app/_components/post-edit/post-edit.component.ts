@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms'; 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { IPost } from 'src/app/_interfaces/user-info';
 import { PostService } from 'src/app/_services/post.service';
 
@@ -15,14 +16,19 @@ export class PostEditComponent {
   public blogForm: FormGroup;
   private postId: string = "";
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private postService: PostService) {
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private postService: PostService,
+    private toastr: ToastrService,
+    private router: Router) {
     this.blogForm = this.fb.group({
       title: ['', Validators.required],
       content: ['', Validators.required]
     });
     
     this.route.paramMap.subscribe(params => {
-     this.postId = params.get('id') ?? ""; // Assuming 'id' is the URL parameter name
+     this.postId = params.get('id') ?? "";
      if (this.postId) {
         this.editingPost = true;
         this.loadPost();
@@ -39,21 +45,43 @@ export class PostEditComponent {
   
   public onSubmit(){
     if (this.blogForm.invalid) {
-      return; // Prevent submission if invalid
+      return; 
     }
     
     const blogPost: IPost = this.blogForm.value;
   
     if (this.editingPost){
       blogPost.id = this.postId;
-      this.postService.editPost(blogPost);
+      this.editPost(blogPost);
     }
     else {
       blogPost.authorId = this.postService.getCurrentUserId();
       if (blogPost.authorId === "-1"){
         return;
       }
-      this.postService.addPost(blogPost);
+      this.addPost(blogPost);
     }
+  }
+
+  private editPost(blogPost: IPost){
+    this.postService.editPost(blogPost).subscribe({
+      next: _ => {
+        this.toastr.success(`Post edited Succcessfuly`);
+        this.router.navigate(['/posts-list']);
+      }, 
+      error: _ =>  this.toastr.error(`Create New Post Request Failed`), //todo: add failure information
+    });
+  }
+
+  
+  private addPost(blogPost: IPost){
+    this.postService.addPost(blogPost).subscribe({
+      next: post => {
+        this.toastr.success(`Post Added Succcessfuly`);
+        this.postService.setCurrentPost(post);
+        this.router.navigate(['/post', post.id]);
+      },
+      error: _ =>  this.toastr.error(`Create New Post Request Failed`),
+    });
   }
 }

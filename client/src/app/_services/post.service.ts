@@ -20,8 +20,8 @@ export class PostService {
   }
 
 
-  public addPost(post: IPost) :Observable<boolean>{
-    return this.http.post<boolean>(`${this.url}post`, post);
+  public addPost(post: IPost) :Observable<IPost>{
+    return this.http.post<IPost>(`${this.url}post`, post);
   } 
   public editPost(post: IPost) :Observable<boolean>{
     return this.http.put<boolean>(`${this.url}post`, post);
@@ -37,7 +37,7 @@ export class PostService {
       return "-1"; 
     }
     const user: User = JSON.parse(userString);
-    return user.userId;
+    return user.userId ?? -1;
   }
 
 

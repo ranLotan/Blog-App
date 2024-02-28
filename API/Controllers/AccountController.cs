@@ -31,11 +31,11 @@ namespace API.Controllers
             {
                 UserName = registerDto.UserName.ToLower(),
                 HashedPassword = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
+                //todo: return a UserDto without the hashed salt
                 HashedSalt = hmac.Key
             };
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
-
             return Ok(user);
         }
 
@@ -63,7 +63,8 @@ namespace API.Controllers
             return new UserDto()
             {
                 UserName = userName,
-                Token = _tokenService.GetToken(user)
+                Token = _tokenService.GetToken(user),
+                UserId = user.Id
             };
         }
 
