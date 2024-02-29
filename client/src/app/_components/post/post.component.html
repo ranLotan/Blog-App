@@ -1,6 +1,4 @@
-<ng-container *ngIf="(accountService.currentUser$ | async) as User">
-    <Button *ngIf="User != null && User?.userName === post?.authorName" class="btn btn-primary" (click)="editPost()">Edit Post</Button>
-</ng-container>
+
 
 <div class="col-md-8">
   <article class="blog-post">
@@ -8,8 +6,11 @@
     <p class="blog-post-meta">{{post?.dateCreated}} by <a href="#">{{post?.authorName}}</a></p>
 
       <p>{{post?.content}}</p>
-    <hr>
-  </article>
+    </article>
+  <ng-container *ngIf="(accountService.currentUser$ | async) as User">
+    <Button *ngIf="User != null && User?.userName === post?.authorName" class="btn btn-primary" (click)="editPost()">Edit Post</Button>
+  </ng-container>  
+  <hr>
 
   <app-comments [currentPostId]="post?.id ?? '0'"></app-comments>
 </div>
