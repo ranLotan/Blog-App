@@ -16,13 +16,11 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {
     this.postService.currentPost$.subscribe(post => {
-      console.log(post)
       this.post = post;
     }) 
   }
 
   public editPost(){
     this.router.navigate(['/edit-post/', this.post?.id]);
-
   }
 }

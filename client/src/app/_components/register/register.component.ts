@@ -27,8 +27,8 @@ export class RegisterComponent {
     }
     this.accountService.register(this.model).subscribe({
       next: _ => {
-        this.toaster.success("registration successful");
-        this.router.navigateByUrl('/blogs');
+        this.toaster.success("Registration Successful");
+        this.toaster.success("Now Login");
       },
       error: (result: User) => this.toaster.error(result.error),      
     });

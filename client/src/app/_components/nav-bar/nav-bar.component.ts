@@ -22,7 +22,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
   
   constructor( 
     public accountService : AccountService,
-    // private router: Router,
+    private router: Router,
     private toaster: ToasterService,
     ){}
     
@@ -48,9 +48,8 @@ export class NavBarComponent implements OnInit, OnDestroy {
       this.toaster.error("user or password are empty");
       return;
     }
-    console.log(this.model);
     this.accountService.login(this.model).subscribe({
-      // next: _ => this.router.navigateByUrl('/reports'),
+      next: _ => this.router.navigateByUrl('/posts-list'),
       error: (result: User) => {
         let msg = typeof(result.error) == 'string' ? result.error : "Request Failed";
         this.toaster.error(msg);
@@ -60,6 +59,6 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   public logOut(): void{
     this.accountService.logOut();
-    // this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/');
   }
 }

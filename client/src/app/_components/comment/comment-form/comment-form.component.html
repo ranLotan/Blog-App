@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" class="justify-content: space-between" (ngSubmit)="onSubmit()">
     <textarea class="comment-form-textarea" formControlName="text"></textarea>
     <button class="comment-form-button" type="submit" [disabled]="form.invalid"> {{submitLabel}} </button>
     <button type="button" class="comment-form-button comment-form-cancel-button" (click)="clear()"> clear </button>

@@ -9,9 +9,6 @@
               <a class="nav-link" routerLink="/posts-list" routerLinkActive="active">Posts</a>
             </li>
             <li *ngIf="accountService.currentUser$ | async" class="nav-item">
-              <a class="nav-link" routerLink="/my-blog" routerLinkActive="active">My Blog</a>
-            </li>
-            <li *ngIf="accountService.currentUser$ | async" class="nav-item">
               <a class="nav-link" routerLink="/add-post" routerLinkActive="active">Add Post</a>
             </li>
           </ul>
@@ -24,29 +21,13 @@
         
         <ng-template #loggedOut>
           <!-- log In  -->
-          <form #loginForm="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off"> 
+          <form #loginForm="ngForm" class="d-flex justify-content: space-between" (ngSubmit)="login()" autocomplete="off"> 
             <input name="username" [(ngModel)]="model.username" class="form-control me-2" type="text" placeholder="User Name" aria-label="User Name">
             <input name="password" [(ngModel)]="model.password" class="form-control me-2" type="password" placeholder="Password" aria-label="Password">
-            <button class="btn btn-success" type="submit">Login</button> 
+            <button class="btn btn-success me-2" type="submit">Login</button> 
             <a class="btn btn-success" routerLink="/register" routerLinkActive="active">SignUp</a>
           </form>
 
         </ng-template>
-        
-<!-- 
-         <!-- Menu DropDown   
-        <div *ngIf="(accountService.currentUser$ | async) as User" class="btn-group" dropdown>
-          <button id="button-split" type="button" dropdownToggle class="btn btn-primary dropdown-toggle dropdown-toggle-split"
-                  aria-controls="dropdown-split">
-            <span class="sr-only visually-hidden">Split button!</span>
-          </button>
-          <ul id="dropdown-split" *dropdownMenu class="dropdown-menu"
-              role="menu" aria-labelledby="button-split">
-            <li role="menuitem"><a class="dropdown-item" href="#">Edit Profile</a></li>
-            <li role="menuitem"><a class="dropdown-item" href="#" (click)="openAddReportModal()">Add Report</a></li>
-            <li class="divider dropdown-divider"></li>
-            <li role="menuitem" ><a class="dropdown-item" href="#" ">Log Out</a></li>
-          </ul>
-        </div> -->
     </div>
   </nav>
