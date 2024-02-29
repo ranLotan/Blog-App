@@ -21,7 +21,7 @@ Backend:
 
 * Store user data securely. 
 * Enable users to edit and delete their comments.
-• Implement basic error handling and user feedback messages. (partialy Delivered)
+* Implement basic error handling and user feedback messages. (partialy Delivered)
 
 ## Dependencies
   * Angular CLI 16 
@@ -47,7 +47,7 @@ docker run -d --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=postgrespw postg
 
 1. Clone the repo
 ```
-git clone https://github.com/your_username_/Project-Name.git
+git clone https://github.com/ranlotan/blog-app.git
 ```
 2. add defenitions to appsetting.json
   e.g.:
