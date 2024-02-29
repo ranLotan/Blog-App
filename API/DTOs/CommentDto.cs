@@ -10,6 +10,7 @@ namespace API.DTOs
 
         // Foreign key 
         public int PostId { get; set; }
+        public int AuthorId { get; set; } 
         public string DateCreated { get; set; }
     }
 }

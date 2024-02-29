@@ -15,15 +15,25 @@ export class CommentService {
   
   public getPostComments(postId: string): Observable<IComment[]> {
     return this.httpClient.get<IComment[]>(`${this.url}comment/sortedbydate?postid=${postId}`);
-    }
-    
-  public createComment(comment: IComment): Observable<IComment> {
-    
-    return this.httpClient.post<IComment>(`${this.url}comment`, comment );
-    
   }
+  
+  public createComment(comment: any): Observable<IComment> {
+    return this.httpClient.post<IComment>(`${this.url}comment`, comment );    
+  }
+  
+  public updateComment(commentToEdit: { id: string; postId: string; content: string; }) {
+    return this.httpClient.put<IComment>(`${this.url}comment`, commentToEdit );    
+  }
+
+  public deleteComment(commentId: string): Observable<IComment>  {
+    return this.httpClient.delete<IComment>(`${this.url}comment/${commentId}`);
+  }
+
   public getUserName(){
     return this.accountService.currentUserSoure.getValue()?.userName;
+  }
 
+  public getUserId(){
+    return this.accountService.currentUserSoure.getValue()?.userId;
   }
 }

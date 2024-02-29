@@ -4,3 +4,19 @@
         <div class="comment-text">{{ comment.content }}</div>
     </div>
 </div>
+
+<app-comment-form
+  *ngIf="isEditing()"
+  submitLabel="Edit comment"
+  [initialText]="comment.content"
+  (handleSubmit)="updateComment.emit({ text: $event, commentId: comment.id })"
+></app-comment-form>
+
+<div *ngIf="changesAllowed" class="comment-actions">
+    <div class="comment-action" (click)="setActiveComment.emit(comment.id)">
+        Edit My Comment
+    </div>
+    <div  class="comment-action" (click)="deleteComment.emit(comment.id)">
+        Delete My Comment
+    </div>
+</div>

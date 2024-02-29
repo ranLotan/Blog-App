@@ -15,9 +15,16 @@ export interface IPost{
 }
 
 export interface IComment {
-    id?: string;
+    id: string;
     content: string;
     author: string;
     postId: string;
+    authorId: string;
     dateCreated?: string;
   }
+export interface IEditCommentInfo {
+    commentId: string;
+    content: string;
+  }
+
+  

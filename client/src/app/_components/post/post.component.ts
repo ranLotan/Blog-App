@@ -18,15 +18,7 @@ export class PostComponent implements OnInit {
     this.postService.currentPost$.subscribe(post => {
       console.log(post)
       this.post = post;
-    })
-    // this.route.paramMap.subscribe(params => {
-    //   const postId = params.get('id'); // Assuming 'id' is the URL parameter name
-    //   if (postId) {
-    //     // Fetch the post details from your service using postId
-    //     // ... (replace with your actual logic to fetch the post based on postId)
-    //     this.post = /* retrieved post data */;
-    //   }
-    // })    
+    }) 
   }
 
   public editPost(){

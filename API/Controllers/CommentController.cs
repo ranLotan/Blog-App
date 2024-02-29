@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System.Xml.Linq;
 
 namespace API.Controllers
 {
@@ -24,7 +26,6 @@ namespace API.Controllers
         public async Task<ActionResult<IEnumerable<PostDto>>> GetPostCommentsSortedByDate(int postId)
         {
             var comments = await _context.Comments
-                //.Include(p => p.Post)
                 .Where(p => p.PostId == postId)
                 .OrderByDescending(p => p.CreationDate)
                 .ToListAsync();
@@ -35,6 +36,7 @@ namespace API.Controllers
                 Content = p.Content,
                 Author = p.Author,
                 PostId = p.PostId,
+                AuthorId = p.AhutorId,
             }).ToList();
 
             return Ok(postDtos);
@@ -60,6 +62,7 @@ namespace API.Controllers
                 Content = commentDto.Content,
                 Author = commentDto.Author,
                 PostId = commentDto.PostId,
+                AhutorId = commentDto.AuthorId
             };
 
             _context.Comments.Add(newComment);
@@ -78,9 +81,9 @@ namespace API.Controllers
         }
 
         [AllowAnonymous]
-        // PUT: api/Post
+        // PUT: api/comment
         [HttpPut]
-        public async Task<IActionResult> EditPostById([FromBody] CommentDto commentDto)
+        public async Task<ActionResult<CommentDto>> EditCommentById([FromBody] CommentDto commentDto)
         {
             if (commentDto == null || commentDto.Id <= 0)
             {
@@ -93,6 +96,7 @@ namespace API.Controllers
             {
                 return NotFound();
             }
+
 
             comment.Content = commentDto.Content;
             _context.Entry(comment).State = EntityState.Modified;
@@ -112,11 +116,14 @@ namespace API.Controllers
                     return StatusCode(500, "Failed to create comment due to database error.");
                 }
             }
-            return Ok();
+
+            //var response = convertToCommentResponse(comment);
+            return Ok(comment.ConvertToCommentDto());
         }
 
+        [AllowAnonymous]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePost(int id)
+        public async Task<ActionResult<CommentDto>> DeleteComment(int id)
         {
             var comment = await _context.Comments.FindAsync(id);
             if (comment == null)
@@ -134,7 +141,8 @@ namespace API.Controllers
                 return StatusCode(500, "Failed to delete comment due to database error.");
             }
 
-            return NoContent();
+            var response = comment.ConvertToCommentDto();
+            return Ok(response);
         }
 
         private bool PostExits(int postId)

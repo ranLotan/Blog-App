@@ -1,5 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <textarea class="comment-form-textarea" formControlName="title"></textarea>
-    <button class="comment-form-button" type="submit" [disabled]="form.invalid"> add comment </button>
-    <button type="button" class="comment-form-button comment-form-cancel-button"> clear </button>
+    <textarea class="comment-form-textarea" formControlName="text"></textarea>
+    <button class="comment-form-button" type="submit" [disabled]="form.invalid"> {{submitLabel}} </button>
+    <button type="button" class="comment-form-button comment-form-cancel-button" (click)="clear()"> clear </button>
 </form>

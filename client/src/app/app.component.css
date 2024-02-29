@@ -1,6 +1,10 @@
 .content {
 grid-area: content;
 position: relative;
+flex: 1; /* Make this container occupy all remaining space */
+padding: 1rem; /* Add padding inside the main content area */
+margin-left: 30px; /* Add a small gap to the left from the navbar */
+margin-right: 30px;
 }
 
 .header {
