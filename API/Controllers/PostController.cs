@@ -22,7 +22,6 @@ namespace API.Controllers
             _context = context;
         }
 
-        [AllowAnonymous]
         // GET: api/Post/sortedbydate (new)
         [HttpGet("sortedbydate")]
         public async Task<ActionResult<IEnumerable<PostDto>>> GetAllPostsSortedByDate()
@@ -47,7 +46,6 @@ namespace API.Controllers
         }
 
         // POST: api/Post
-        [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult<PostDto>> AddPostByUserID([FromBody] PostDto postDto)
         {
@@ -70,9 +68,6 @@ namespace API.Controllers
             return Ok(new PostDto(newPost));
         }
 
-
-
-        [AllowAnonymous]
         // PUT: api/Post
         [HttpPut]
         public async Task<IActionResult> EditPostById([FromBody] PostDto postDto)
@@ -125,17 +120,12 @@ namespace API.Controllers
             _context.Posts.Remove(post);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok();
         }
 
         private bool PostExists(int id)
         {
             return _context.Posts.Any(e => e.Id == id);
-        }
-
-        private bool UserExists(int id)
-        {
-            return _context.Users.Any(e => e.Id == id);
         }
 
         private async Task<AppUser> GetUserById(int id)

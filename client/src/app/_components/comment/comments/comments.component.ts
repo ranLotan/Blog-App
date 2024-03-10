@@ -23,7 +23,6 @@ export class CommentsComponent implements OnInit {
   }
 
   public addComment(event:  {text: string;}){
-    console.log('addComment', event);
     const comment ={ 
       content: event.text,
       postId: this.currentPostId,

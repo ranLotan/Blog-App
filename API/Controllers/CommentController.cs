@@ -20,7 +20,6 @@ namespace API.Controllers
             _context = context;
         }
 
-        [AllowAnonymous]
         // GET: api/comment/sortedbydate (new)
         [HttpGet("sortedbydate")]
         public async Task<ActionResult<IEnumerable<PostDto>>> GetPostCommentsSortedByDate(int postId)
@@ -43,7 +42,6 @@ namespace API.Controllers
         }
 
         // POST: api/comment
-        [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult<PostDto>> AddCommentByPostId([FromBody] CommentDto commentDto)
         {
@@ -80,7 +78,6 @@ namespace API.Controllers
             return Ok(commentDto);
         }
 
-        [AllowAnonymous]
         // PUT: api/comment
         [HttpPut]
         public async Task<ActionResult<CommentDto>> EditCommentById([FromBody] CommentDto commentDto)
@@ -121,7 +118,6 @@ namespace API.Controllers
             return Ok(comment.ConvertToCommentDto());
         }
 
-        [AllowAnonymous]
         [HttpDelete("{id}")]
         public async Task<ActionResult<CommentDto>> DeleteComment(int id)
         {

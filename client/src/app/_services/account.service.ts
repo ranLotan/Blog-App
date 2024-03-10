@@ -21,7 +21,6 @@ export class AccountService {
     return this.client.post<User>(this.loginUrl + 'account/login', model).pipe(
       map((response): User => {
         if (response){
-          console.log(response);
           localStorage.setItem('user', JSON.stringify(response));
           this.currentUserSoure.next(response);
         }
@@ -36,7 +35,7 @@ export class AccountService {
 
   }
 
-  public register(model: any): Observable<User>{
-    return this.client.post<User>(this.loginUrl + 'account/register', model);
+  public register(model: any): Observable<string>{
+    return this.client.post<string>(this.loginUrl + 'account/register', model);
   }
 }

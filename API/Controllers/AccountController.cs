@@ -31,12 +31,17 @@ namespace API.Controllers
             {
                 UserName = registerDto.UserName.ToLower(),
                 HashedPassword = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
-                //todo: return a UserDto without the hashed salt
                 HashedSalt = hmac.Key
             };
             _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-            return Ok(user);
+            try {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException){
+                return StatusCode(500, "Failed to create new User due to database error.");  
+            }
+            
+            return Ok("Registration approved");
         }
 
         [HttpPost("login")]

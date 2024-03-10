@@ -26,11 +26,11 @@ export class RegisterComponent {
       return;
     }
     this.accountService.register(this.model).subscribe({
-      next: _ => {
-        this.toaster.success("Registration Successful");
+      next: response => {
+        this.toaster.success(response);
         this.toaster.success("Now Login");
       },
-      error: (result: User) => this.toaster.error(result.error),      
+      error: response => this.toaster.error(response.error),      
     });
   }
 

@@ -5,8 +5,8 @@
     <h2 class="display-5 link-body-emphasis mb-1">{{post?.title}}</h2>
     <p class="blog-post-meta">{{post?.dateCreated}} by <a href="#">{{post?.authorName}}</a></p>
 
-      <p>{{post?.content}}</p>
-    </article>
+    <p style="white-space: pre-wrap;">{{post?.content}}</p>
+  </article>
   <ng-container *ngIf="(accountService.currentUser$ | async) as User">
     <Button *ngIf="User != null && User?.userName === post?.authorName" class="btn btn-primary" (click)="editPost()">Edit Post</Button>
   </ng-container>  
